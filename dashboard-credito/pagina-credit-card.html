@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard de Análisis de Crédito</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="shorcut icon" type="image/x-icon" href="logo.ico">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --morado-1: #212492;
+      --morado-2: #4649a4;
+      --morado-3: #a7a7d3;
+      --naranja-3: #e24d0d;
+      --blanco: #ffffff;
+      --gris-1: #ebebeb;
+      --gris-2: #d9d9d9;
+      --gris-4: #555655;
+      --gris-5: #231f20;
+    }
+    body {
+      background-color: var(--gris-1);
+      color: var(--gris-5);
+    }
+    .sidebar {
+      background-color: var(--morado-1);
+      color: var(--blanco);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .card-custom {
+    background-color: var(--blanco);
+    border: 1px solid var(--gris-2);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0; /* sin espacio entre tarjetas */
+    cursor: pointer;
+    }
+    .card-custom img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 10px;
+    }
+    .card-custom iframe {
+      width: 100%;
+      height: 250px;
+      border: none;
+      border-radius: 10px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 300px; /* altura estándar para evitar desbordes */
+      gap: 0;
+      padding: 10px;
+      box-sizing: border-box;
+      /* eliminamos overflow:hidden */
+    }
+    .gallery img,
+    .gallery iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 3px solid #348e91;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      background-color: var(--morado-2);
+      color: var(--blanco);
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .card-clientes {
+      background-color: var(--morado-3);
+      color: var(--blanco);
+    }
+    .card-default {
+      background-color: var(--morado-3);
+      color: var(--blanco);
+    }
+    .card-limite {
+      background-color: var(--morado-3);
+      color: var(--blanco);
+    }
+    .card-pagos {
+      background-color: var(--morado-3);
+      color: var(--blanco);
+    }
+  </style>
+</head>
+<body>
+    <div class="row g-0">
+      <!-- FILTROS -->
+      <div class="col-md-2 sidebar">
+        <img src="data-science.png" alt="Logo Data Science" class="img-fluid mb-3" />
+        <h4>Dashboard de Análisis de Crédito</h4>
+        <hr style="border-color: var(--blanco)" />
+        <h5>Filtros</h5>
+        <div class="mb-3">
+          <label for="filtroGenero" class="form-label">Género</label>
+          <select id="filtroGenero" class="form-select">
+            <option value="">Todos</option>
+            <option value="1">Masculino</option>
+            <option value="2">Femenino</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="filtroEstadoCivil" class="form-label">Estado Civil</label>
+          <select id="filtroEstadoCivil" class="form-select">
+            <option value="">Todos</option>
+            <option value="1">Soltero</option>
+            <option value="2">Casado</option>
+            <option value="3">Otros</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="filtroEducacion" class="form-label">Educación</label>
+          <select id="filtroEducacion" class="form-select">
+            <option value="">Todas</option>
+            <option value="1">Posgrado</option>
+            <option value="2">Universitario</option>
+            <option value="3">Secundaria</option>
+            <option value="4">Otros</option>
+          </select>
+        </div>
+        <button class="btn btn-light mt-3 w-100" data-bs-toggle="modal" data-bs-target="#modalAcronimos">
+        Ver ACRÓNIMOS y Ciencia de Datos
+        </button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalConclusiones">
+        Ver Conclusiones
+        </button>
+      </div>
+      <!-- CONTENIDO PRINCIPAL -->
+      <div class="col-md-10 p-4">
+        <div class="row mb-4">
+          <div class="col-md-3 card-custom card-clientes">Clientes Totales<br><strong>30,000</strong></div>
+          <div class="col-md-3 card-custom card-default">Default<br><strong>22.12%</strong></div>
+          <div class="col-md-3 card-custom card-limite">Límite Promedio<br><strong>$167,484.32</strong></div>
+          <div class="col-md-3 card-custom card-pagos">Pagos Totales<br><strong>$6,929,697,324</strong></div>
+        </div>
+        <!-- Pestañas para diferentes vistas -->
+      <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab">Resumen</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab">Tendencias</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab">Predicciones</button>
+        </li>
+      </ul>
+<div class="tab-content" id="myTabContent">
+        <!-- Pestaña Resumen -->
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf1">
+                <iframe src="graficas/grafico_credito.html"></iframe>
+                <h6 class="mt-2">Producción vs Consumo Mensual</h6>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf2">
+                <iframe src="graficas/importancia_variables.html"></iframe>
+                <h6 class="mt-2">Eficiencia de Paneles</h6>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf3">
+                <iframe src="graficas/matriz_confusion.html"></iframe>
+                <h6 class="mt-2">Distribución Horaria</h6>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf4">
+                <iframe src="graficas/matriz_correlacion.html"></iframe>
+                <h6 class="mt-2">Correlación Variables</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pestaña Tendencias -->
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf5">
+                <iframe src="graficas/tendencia_anual.html"></iframe>
+                <h6 class="mt-2">Tendencia Anual</h6>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf6">
+                <iframe src="graficas/comparacion_meses.html"></iframe>
+                <h6 class="mt-2">Comparación por Meses</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pestaña Predicciones -->
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf7">
+                <iframe src="graficas/prediccion_consumo.html"></iframe>
+                <h6 class="mt-2">Predicción de Consumo</h6>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf8">
+                <iframe src="graficas/modelo_predictivo.html"></iframe>
+                <h6 class="mt-2">Modelo Predictivo</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 - Tu Nombre - Ciencia de Datos
+    <small>Nota: estos resultados podrían no coincidir exactamente con datos originales.</small>
+  </footer>
+
+  <!-- MODALES -->
+  <div class="modal fade" id="modalGraf1" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Distribución por Default</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Este gráfico muestra la proporción de clientes que han incumplido (default) respecto al total de clientes.</p>
+          <iframe src="graficas/grafico_credito.html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf2" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Importancia de Variables</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Este gráfico muestra la relevancia de las diferentes variables para predecir el incumplimiento.</p>
+          <iframe src="graficas/importancia_variables.html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf3" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Matriz de Confusión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>La matriz de confusión permite evaluar el rendimiento del modelo de clasificación.</p>
+          <iframe src="graficas/matriz_confusion.html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf4" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Matriz de Correlación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Se observa la correlación entre las variables para detectar relaciones significativas.</p>
+          <img src="graficas/barras_edad.png" width="100%" height="600" style="border:none;"></img>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf5" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Matriz de Correlación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Se observa la correlación entre las variables para detectar relaciones significativas.</p>
+          <img src="graficas/caja_edad.png" width="100%" height="600" style="border:none;"></img>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf6" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Matriz de Correlación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Se observa la correlación entre las variables para detectar relaciones significativas.</p>
+          <img src="graficas/caja_sex_limit.png" width="100%" height="600" style="border:none;"></img>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalAcronimos" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+        <h5 class="modal-title">Acrónimos y Ciencia de Datos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Acrónimos Usados</h6>
+        <table class="table table-striped">
+          <thead>
+            <tr><th>Acrónimo</th><th>Significado</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ROC</td><td>Receiver Operating Characteristic</td></tr>
+            <tr><td>AUC</td><td>Area Under the Curve</td></tr>
+            <tr><td>TP</td><td>True Positive</td></tr>
+            <tr><td>FP</td><td>False Positive</td></tr>
+            <!-- agrega más según tu análisis -->
+          </tbody>
+        </table>
+        <h6 class="mt-4">Descripción de Ciencia de Datos</h6>
+        <p>
+          Este proyecto fue desarrollado por el equipo de Ciencia de Datos para analizar
+          el riesgo de incumplimiento de crédito en clientes de tarjetas bancarias.
+          Se utilizaron técnicas de limpieza de datos, análisis exploratorio, modelado predictivo
+          con algoritmos de clasificación y evaluación de desempeño mediante métricas
+          como precisión, recall y matriz de confusión.  
+          <br><br>
+          Los resultados aquí mostrados permiten visualizar la proporción de defaults, la relación
+          con variables de límite de crédito y las correlaciones entre características.
+        </p>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalConclusiones" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Conclusiones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Estos resultados permiten observar comportamientos y patrones en la base de datos de análisis de crédito.
+            Cabe señalar que los resultados mostrados son estimaciones y podrían no coincidir exactamente con datos originales
+            por diversas razones, incluyendo la calidad de los datos o supuestos del modelo.
+          </p>
+          <p>
+            <strong>Conclusiones clave:</strong>
+          </p>
+          <ul>
+            <li>Se detectó un porcentaje de incumplimiento relevante en clientes con límite de crédito alto.</li>
+            <li>Las variables demográficas tienen influencia en el riesgo de default.</li>
+            <li>El modelo presenta buena capacidad predictiva según la matriz de confusión.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- JavaScript de filtrado -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const graficas = document.querySelectorAll(".grafica");
+
+    function actualizarGraficas() {
+        const genero = document.getElementById("filtroGenero").value;
+        const estadoCivil = document.getElementById("filtroEstadoCivil").value;
+        const educacion = document.getElementById("filtroEducacion").value;
+
+        // Ocultar todas
+        graficas.forEach(g => g.parentElement.classList.add("d-none"));
+
+        // Construir selector
+        let selector = ".grafica";
+        if (genero) selector += `.filtro-genero${genero}`;
+        if (estadoCivil) selector += `.filtro-ec${estadoCivil}`;
+        if (educacion) selector += `.filtro-edu${educacion}`;
+
+        // Mostrar solo las que cumplen
+        document.querySelectorAll(selector).forEach(g => {
+        g.parentElement.classList.remove("d-none");
+        });
+    }
+
+    // eventos
+    document.getElementById("filtroGenero").addEventListener("change", actualizarGraficas);
+    document.getElementById("filtroEstadoCivil").addEventListener("change", actualizarGraficas);
+    document.getElementById("filtroEducacion").addEventListener("change", actualizarGraficas);
+
+    actualizarGraficas(); // inicial
+    });
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
