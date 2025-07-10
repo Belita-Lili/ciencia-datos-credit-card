@@ -1,5 +1,20 @@
-# ciencia-datos-credit-card
-## 🧭 Estructura del Proyecto
+# Credit Card Default Prediction - Data Science Project
+
+## 📌 Descripción
+Análisis predictivo de morosidad en tarjetas de crédito usando Machine Learning. Desarrollado en Google Colab con Python.
+
+## 🚀 Características
+- **ETL completo** desde dataset UCI
+- **4 modelos comparados**: Regresión Logística, Árboles, GBM y Redes Neuronales
+- **Dashboard interactivo** con Plotly
+- **Sistema de filtrado avanzado**
+
+## 🛠️ Tecnologías
+- Python 3.9+
+- Scikit-learn, XGBoost, TensorFlow
+- Plotly, Pandas, NumPy
+
+## 📂 Estructura del Repositorio
 
 ```plaintext
 proyecto_default_credito/
@@ -18,6 +33,84 @@ proyecto_default_credito/
 │   └── default_of_credit_card_clients.csv ← Datos originales para análisis
 │
 └── README.md
+```
+## 🔥 Cómo Ejecutar
+1. Abrir en Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tu_usuario/repo)
+2. Ejecutar celdas en orden
+3. Para el dashboard:
+```python
+!pip install plotly dash
+python app.py
+```
+## 📊 GráficaFiltrada - Explicación Técnica
+El módulo graficaFiltrada permite visualizaciones dinámicas basadas en filtros de usuario:
+```python
+def graficaFiltrada(df, filtros):
+    """
+    Genera gráficos interactivos aplicando filtros multicapa
+    
+    Parámetros:
+    -----------
+    df : DataFrame
+        Dataset completo de tarjetas de crédito
+    filtros : dict
+        Diccionario con parámetros de filtrado:
+        {
+            'edad': (min, max),
+            'limite_credito': (min, max),
+            'genero': int,
+            'default': bool
+        }
+        
+    Retorna:
+    --------
+    fig : plotly.graph_objects.Figure
+        Gráfico interactivo con los filtros aplicados
+    """
+    # Aplicar filtros en cascada
+    df_filtrado = df.copy()
+    for key, val in filtros.items():
+        if val is not None:
+            if isinstance(val, tuple):
+                df_filtrado = df_filtrado[df_filtrado[key].between(*val)]
+            else:
+                df_filtrado = df_filtrado[df_filtrado[key] == val]
+    
+    # Generar figura adaptativa
+    if 'default' in filtros:
+        fig = px.histogram(df_filtrado, x='LIMIT_BAL', color='DEFAULT')
+    else:
+        fig = px.scatter(df_filtrado, x='AGE', y='PAY_AMT1', color='EDUCATION')
+        
+    return fig
+```
+## Diagrama de Flujo
+```mermaid
+graph TD
+    A[DataFrame Original] --> B{Aplicar Filtros}
+    B --> C[Filtro por Edad]
+    B --> D[Filtro por Género]
+    B --> E[Filtro por Límite]
+    C --> F[DataFrame Filtrado]
+    D --> F
+    E --> F
+    F --> G{¿Incluye Default?}
+    G -->|Sí| H[Gráfico de Barras]
+    G -->|No| I[Gráfico de Dispersión]
+```
+## 📁 Casos de Uso
+```python
+# Ejemplo 1: Filtrado básico
+filtros = {'edad': (25, 40), 'genero': 1}
+fig = graficaFiltrada(df, filtros)
+fig.show()
+
+# Ejemplo 2: Filtrado avanzado
+filtros_avanzados = {
+    'limite_credito': (100000, 500000),
+    'default': True,
+    'educacion': 2
+}
 ```
 Este proyecto corresponde a una prueba técnica para Ciencia de datos, donde se desarrollan modelos de clasificación y regresión usando el dataset público Default of Credit Card Clients. El objetivo es predecir:
 
