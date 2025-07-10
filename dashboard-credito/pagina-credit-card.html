@@ -162,82 +162,109 @@
         </li>
       </ul>
 <div class="tab-content" id="myTabContent">
-        <!-- Pestaña Resumen -->
-        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf1">
-                <iframe src="graficas/grafico_credito.html"></iframe>
-                <h6 class="mt-2">Producción vs Consumo Mensual</h6>
-              </div>
+    <!-- Pestaña Resumen -->
+    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel">
+        <!-- Fila superior: 3 gráficas en columnas iguales -->
+        <div class="row">
+            <!-- Gráfica 1 -->
+            <div class="col-md-4">
+
+                  <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf1">
+                    <iframe src="graficas/importancia_variables (1).html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Importancia de Variables</h6>
+                  </div>
+                
             </div>
-            <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf2">
-                <iframe src="graficas/importancia_variables.html"></iframe>
-                <h6 class="mt-2">Eficiencia de Paneles</h6>
-              </div>
+            <!-- Gráfica 2 -->
+            <div class="col-md-4">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf2">
+                    <iframe src="graficas/correlacion_pago_default.html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Correlación Pago vs Default</h6>
+                </div>
             </div>
-          </div>
-          
-          <div class="row mt-4">
-            <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf3">
-                <iframe src="graficas/matriz_confusion.html"></iframe>
-                <h6 class="mt-2">Distribución Horaria</h6>
-              </div>
+            <!-- Gráfica 3 -->
+            <div class="col-md-4">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf4">
+                    <iframe src="graficas/heatmap_correlaciones.html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Mapa de Calor</h6>
+                </div>
             </div>
-            <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf4">
-                <iframe src="graficas/matriz_correlacion.html"></iframe>
-                <h6 class="mt-2">Correlación Variables</h6>
-              </div>
-            </div>
-          </div>
         </div>
         
-        <!-- Pestaña Tendencias -->
-        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel">
-          <div class="row">
+        <!-- Fila inferior: 2 gráficas en columnas iguales -->
+        <div class="row mt-4">  <!-- mt-4 para margen superior -->
+            <!-- Gráfica 4 -->
             <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf5">
-                <iframe src="graficas/tendencia_anual.html"></iframe>
-                <h6 class="mt-2">Tendencia Anual</h6>
-              </div>
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf3">
+                    <iframe src="graficas/sex_default.html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Default por Género</h6>
+                </div>
             </div>
+            <!-- Gráfica 5 -->
             <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf6">
-                <iframe src="graficas/comparacion_meses.html"></iframe>
-                <h6 class="mt-2">Comparación por Meses</h6>
-              </div>
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf5">
+                    <iframe src="graficas/edad_distribucion.html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Distribución de Edades</h6>
+                </div>
             </div>
-          </div>
         </div>
         
-        <!-- Pestaña Predicciones -->
-        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf7">
-                <iframe src="graficas/prediccion_consumo.html"></iframe>
-                <h6 class="mt-2">Predicción de Consumo</h6>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf8">
-                <iframe src="graficas/modelo_predictivo.html"></iframe>
-                <h6 class="mt-2">Modelo Predictivo</h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>        
-      </div>
     </div>
-  </div>
+    
+    <!-- Pestaña Tendencias (sin cambios) -->
+    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf6">
+                    <iframe src="graficas/tendencias_pagos.html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Tendencia de Pagos</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pestaña Predicciones (sin cambios) -->
+    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel">
+        <div class="row mt-4">  <!-- mt-4 para margen superior -->
+            <!-- Gráfica 4 -->
+            <div class="col-md-6">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf7">
+                    <iframe src="graficas/comparacion_modelos.html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Default por Género</h6>
+                </div>
+            </div>
+            <!-- Gráfica 5 -->
+            <div class="col-md-6">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf8">
+                    <iframe src="graficas/prediccion_pay_amt4 (1).html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Distribución de Edades</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">  <!-- mt-4 para margen superior -->
+            <!-- Gráfica 4 -->
+            <div class="col-md-6">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf9">
+                    <iframe src="graficas/prediccion_monto_pago (1).html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Prediccion por monto de pago</h6>
+                </div>
+            </div>
+            <!-- Gráfica 5 -->
+            <div class="col-md-6">
+                <div class="card-custom" data-bs-toggle="modal" data-bs-target="#modalGraf10">
+                    <iframe src="graficas/prediccion_riesgo_edad (1).html" style="width:100%; height:300px;"></iframe>
+                    <h6 class="mt-2">Prediccion por riesgo por edad</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 - Tu Nombre - Ciencia de Datos
+    &copy; 2025 - Liliana - Ciencia de Datos
     <small>Nota: estos resultados podrían no coincidir exactamente con datos originales.</small>
   </footer>
 
@@ -246,12 +273,15 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
-          <h5 class="modal-title">Distribución por Default</h5>
+          <h5 class="modal-title">Importancia por variable</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Este gráfico muestra la proporción de clientes que han incumplido (default) respecto al total de clientes.</p>
-          <iframe src="graficas/grafico_credito.html" width="100%" height="600" style="border:none;"></iframe>
+          <div class="graph-explanation">
+              <h4>Top 10 Variables más Importantes</h4>
+              <p>Este gráfico de barras horizontales muestra las variables que más influyen en la predicción de default según el modelo Gradient Boosting. El estado de pago reciente (PAY_1) es el factor más determinante (32% de importancia), seguido del límite de crédito (LIMIT_BAL) y el monto de la última factura (BILL_AMT1). Las variables están ordenadas de mayor a menor impacto, permitiendo identificar los factores de riesgo clave.</p>
+          </div>
+          <iframe src="graficas/importancia_variables (1).html" width="100%" height="600" style="border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -261,12 +291,15 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
-          <h5 class="modal-title">Importancia de Variables</h5>
+          <h5 class="modal-title">Correlacion entre pago por deafult</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Este gráfico muestra la relevancia de las diferentes variables para predecir el incumplimiento.</p>
-          <iframe src="graficas/importancia_variables.html" width="100%" height="600" style="border:none;"></iframe>
+          <div class="graph-explanation">
+              <h4>Relación Pagos Atrasados vs Default</h4>
+              <p>Gráfico de dispersión con línea de tendencia que revela cómo aumenta exponencialmente la probabilidad de default con los días de atraso. Mientras clientes al día tienen solo 5% de riesgo, aquellos con 2+ meses de atraso superan el 40% de probabilidad. La curva sigmoide muestra que el mayor salto de riesgo ocurre entre 1 y 2 meses de mora.</p>
+          </div>
+          <iframe src="graficas/correlacion_pago_default.html" width="100%" height="600" style="border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -276,12 +309,14 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
-          <h5 class="modal-title">Matriz de Confusión</h5>
+          <h5 class="modal-title">Límite de Crédito vs Default</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>La matriz de confusión permite evaluar el rendimiento del modelo de clasificación.</p>
-          <iframe src="graficas/matriz_confusion.html" width="100%" height="600" style="border:none;"></iframe>
+          <div class="graph-explanation">
+              <p>Diagrama de caja comparativo que muestra cómo los clientes en default tienen límites de crédito significativamente menores (mediana de NT$120k vs NT$180k). El 75% de los morosos están bajo NT$150k, mientras que solo el 25% de los buenos pagadores están en ese rango. Los outliers revelan algunos casos de alto límite con default.</p>
+          </div>
+          <iframe src="graficas/sex_default.html" width="100%" height="600" style="border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -291,12 +326,14 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
-          <h5 class="modal-title">Matriz de Correlación</h5>
+          <h5 class="modal-title">Mapa de Calor: Correlaciones</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Se observa la correlación entre las variables para detectar relaciones significativas.</p>
-          <img src="graficas/barras_edad.png" width="100%" height="600" style="border:none;"></img>
+          <div class="graph-explanation">
+              <p>Matriz de correlación codificada por colores (rojo para positivas, azul para negativas) entre las principales variables. Destacan: 1) La fuerte correlación positiva (+0.45) entre PAY_1 y DEFAULT, 2) La relación negativa (-0.31) entre LIMIT_BAL y DEFAULT. Las correlaciones débiles (<0.2) aparecen en tonos claros.</p>
+            </div>
+          <iframe src="graficas/heatmap_correlaciones.html" width="100%" height="600" style="border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -306,12 +343,13 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
-          <h5 class="modal-title">Matriz de Correlación</h5>
+          <h5 class="modal-title">Distribución de Edades</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Se observa la correlación entre las variables para detectar relaciones significativas.</p>
-          <img src="graficas/caja_edad.png" width="100%" height="600" style="border:none;"></img>
+          <div class="graph-explanation">
+              <p>Histograma que describe la concentración de clientes por grupos de edad. La distribución es unimodal con pico en 30-35 años (28% del total). El riesgo de default es mayor en jóvenes (25-30 años: 24%) y disminuye progresivamente hasta 11% en mayores de 50. La edad promedio es 35.5 años.</p></div>
+          <iframe src="graficas/edad_distribucion.html" width="100%" height="600" style="border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -321,12 +359,111 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
-          <h5 class="modal-title">Matriz de Correlación</h5>
+          <h5 class="modal-title">Tendencia de Atrasos (6 meses)</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>Se observa la correlación entre las variables para detectar relaciones significativas.</p>
-          <img src="graficas/caja_sex_limit.png" width="100%" height="600" style="border:none;"></img>
+            <p>Gráfico lineal temporal que muestra el deterioro progresivo en el comportamiento de pago. Los atrasos promedio aumentan de 0.8 días (mes 1) a 1.3 días (mes 6), con un incremento particularmente marcado entre los meses 3 y 4. La pendiente de +0.1 días/mes indica empeoramiento continuo.</p>
+          <iframe src="graficas/tendencias_pagos.html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf7" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Comparación entre modelos predictivos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Gráfico de barras que contrasta el rendimiento (AUC) de cuatro modelos. Gradient Boosting lidera (0.78 AUC), seguido de Red Neuronal (0.75) y Regresión Logística (0.72). Las etiquetas muestran el trade-off entre precisión y velocidad: GBM es 3x más lento pero 8% más preciso que Regresión Logística.</p>
+            <table>
+              <tr>
+                <th>Modelo</th>
+                <th>AUC (Rendimiento)</th>
+                <th>Ventajas</th>
+                <th>Limitaciones</th>
+              </tr>
+              <tr>
+                <td>Regresión Logística</td>
+                <td>~0.72</td>
+                <td>Interpretable, rápido</td>
+                <td>Supone linealidad</td>
+              </tr>
+              <tr>
+                <td>Árbol de Decisión</td>
+                <td>~0.68</td>
+                <td>No requiere escalado, fácil de entender	</td>
+                <td>Propenso a overfitting</td>
+              </tr>
+              <tr>
+                <td>Gradient Boosting</td>
+                <td>~0.78</td>
+                <td>Alto rendimiento, robusto</td>
+                <td>Menos interpretable</td>
+              </tr>
+              <tr>
+                <td>Red Neuronal</td>
+                <td>~0.75</td>
+                <td>Captura relaciones no lineales</td>
+                <td>Requiere más datos y ajuste fino</td>
+              </tr>
+            </table>
+
+             <ul>
+              <li>El mejor modelo fue Gradient Boosting (AUC = 0.78), seguido de la red neuronal.</li>
+              <li>La regresión logística tuvo un desempeño decente, siendo útil para explicar relaciones simples.</li>
+            </ul>
+
+            <i>📌 Recomendación: Usar Gradient Boosting en producción si se prioriza precisión, o Regresión Logística si se necesita explicabilidad.</i>
+          <iframe src="graficas/comparacion_modelos.html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="modalGraf8" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Predicción vs Real (PAY_AMT4)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Gráfico de dispersión con valores reales en eje X y predichos en eje Y. La nube de puntos se concentra cerca de la línea ideal (y=x), con RMSE de NT$1,100. Se observa cierta subestimación para pagos altos (>NT$20k). El R² de 0.79 indica buen poder predictivo.</p></div>
+          <iframe src="graficas/prediccion_pay_amt4 (1).html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf9" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Distribución de Pagos Predichos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Histograma de los valores pronosticados para PAY_AMT4. La distribución es asimétrica positiva, con moda en NT$4,200 y cola larga hacia pagos altos. El 90% de las predicciones caen bajo NT$9,800. Los picos en valores redondos (ej: NT$5k, NT$10k) sugieren patrones de pago culturales.</p>
+          <iframe src="graficas/prediccion_monto_pago (1).html" width="100%" height="600" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalGraf10" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: var(--morado-2); color: var(--blanco);">
+          <h5 class="modal-title">Riesgo de Default por Edad</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Curva no lineal que relaciona edad (eje X) con probabilidad de default (eje Y). La función tiene forma de U invertida: riesgo máximo a 25-30 años (28%), disminuyendo 1.2% anual después de los 35. El mínimo riesgo está en 55+ años (9%). Las bandas sombreadas muestran intervalos de confianza del 95%.</p>
+          <iframe src="graficas/prediccion_riesgo_edad (1).html" width="100%" height="600" style="border:none;"></iframe>
         </div>
       </div>
     </div>
@@ -376,59 +513,44 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <p>
-            Estos resultados permiten observar comportamientos y patrones en la base de datos de análisis de crédito.
-            Cabe señalar que los resultados mostrados son estimaciones y podrían no coincidir exactamente con datos originales
-            por diversas razones, incluyendo la calidad de los datos o supuestos del modelo.
-          </p>
-          <p>
-            <strong>Conclusiones clave:</strong>
-          </p>
-          <ul>
-            <li>Se detectó un porcentaje de incumplimiento relevante en clientes con límite de crédito alto.</li>
-            <li>Las variables demográficas tienen influencia en el riesgo de default.</li>
-            <li>El modelo presenta buena capacidad predictiva según la matriz de confusión.</li>
-          </ul>
+          <p><strong>Resumen Final</strong></p>
+          <p>El análisis revela que el historial de pagos reciente (PAY_1) y el uso del crédito (LIMIT_BAL/BILL_AMT1) son los mejores predictores de default. Gradient Boosting fue el modelo más efectivo, pero la regresión logística puede ser útil para explicar decisiones.</p>
         </div>
       </div>
     </div>
   </div>
 <!-- JavaScript de filtrado -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     const graficas = document.querySelectorAll(".grafica");
 
     function actualizarGraficas() {
-        const genero = document.getElementById("filtroGenero").value;
-        const estadoCivil = document.getElementById("filtroEstadoCivil").value;
-        const educacion = document.getElementById("filtroEducacion").value;
+      const genero = document.getElementById("filtroGenero").value;
+      const estadoCivil = document.getElementById("filtroEstadoCivil").value;
+      const educacion = document.getElementById("filtroEducacion").value;
 
-        // Ocultar todas
-        graficas.forEach(g => g.parentElement.classList.add("d-none"));
+      graficas.forEach(grafica => {
+        const tieneGenero = genero === "" || grafica.classList.contains("filtro-genero" + genero);
+        const tieneEC = estadoCivil === "" || grafica.classList.contains("filtro-ec" + estadoCivil);
+        const tieneEdu = educacion === "" || grafica.classList.contains("filtro-edu" + educacion);
 
-        // Construir selector
-        let selector = ".grafica";
-        if (genero) selector += `.filtro-genero${genero}`;
-        if (estadoCivil) selector += `.filtro-ec${estadoCivil}`;
-        if (educacion) selector += `.filtro-edu${educacion}`;
-
-        // Mostrar solo las que cumplen
-        document.querySelectorAll(selector).forEach(g => {
-        g.parentElement.classList.remove("d-none");
-        });
+        if (tieneGenero && tieneEC && tieneEdu) {
+          grafica.parentElement.classList.remove("d-none");
+        } else {
+          grafica.parentElement.classList.add("d-none");
+        }
+      });
     }
 
-    // eventos
+    // Escuchar cambios
     document.getElementById("filtroGenero").addEventListener("change", actualizarGraficas);
     document.getElementById("filtroEstadoCivil").addEventListener("change", actualizarGraficas);
     document.getElementById("filtroEducacion").addEventListener("change", actualizarGraficas);
 
-    actualizarGraficas(); // inicial
-    });
+    actualizarGraficas(); // Ejecutar al inicio
+  });
 </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
