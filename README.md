@@ -1,4 +1,6 @@
+# dashboard-analisis-credit-card ->
 # Credit Card Default Prediction - Data Science Project
+<img width="1599" height="763" alt="image" src="https://github.com/user-attachments/assets/17eaa086-4ae6-4fa8-8782-995c61b5468c" />
 
 ## 📌 Descripción
 Análisis predictivo de morosidad en tarjetas de crédito usando Machine Learning. Desarrollado en Google Colab con Python.
