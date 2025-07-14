@@ -220,8 +220,5 @@ Asegúrate de instalar dependencias:
 ```bash
 pip install -q plotly xgboost scikit-learn pandas matplotlib seaborn
 ```
-Ejecuta cada celda del notebook.
 
-👤 Autor
-Liliana Becerril Tapia
-Ingeniera en Energía | Ciencia de Datos | Análisis de Riesgo Financiero
+
